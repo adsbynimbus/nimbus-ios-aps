@@ -11,23 +11,19 @@ var package = Package(
            targets: ["NimbusAPSKit"])
     ],
     dependencies: [
-        .package(url: "https://github.com/adsbynimbus/swift-package-aps", from: "5.2.0"),
-        .package(url: "https://github.com/birdrides/mockingbird", from: "0.20.0")
+        .package(url: "https://github.com/amzn/swift-package-manager-amazon-aps", from: "5.6.6")
     ],
     targets: [
         .target(
             name: "NimbusAPSKit",
             dependencies: [
                 .product(name: "NimbusKit", package: "nimbus-ios-sdk"),
-                .product(name: "DTBiOSSDK", package: "swift-package-aps")
+                .product(name: "AmazonPublisherServicesSDK", package: "swift-package-manager-amazon-aps")
             ]
         ),
         .testTarget(
             name: "NimbusAPSKitTests",
-            dependencies: [
-                "NimbusAPSKit",
-                .product(name: "Mockingbird", package: "mockingbird")
-            ],
+            dependencies: ["NimbusAPSKit"],
             swiftSettings: [
                 .swiftLanguageMode(.v5)
             ]

@@ -9,7 +9,6 @@
 import DTBiOSSDK
 @testable import NimbusAPSKit
 @testable import NimbusKit
-import Mockingbird
 import Testing
 
 @Suite("Nimbus APS interceptor tests")
