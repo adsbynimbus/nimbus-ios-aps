@@ -1,5 +1,5 @@
 //
-//  NimbusAPSOnRequestInterceptorTests.swift
+//  APSRequestInterceptorTests.swift
 //  NimbusRequestAPSKitTests
 //
 //  Created on 3/27/23.
@@ -17,7 +17,7 @@ struct NimbusAPSOnRequestInterceptorTests {
     func firstRequestIsSkipped() async throws {
         let info = try await NimbusRequest(from: Nimbus.bannerAd(position: "test", size: .banner).adRequest!.request)
         
-        let interceptor = NimbusAPSOnRequestInterceptor(ads: [.init(format: .banner, slotUUID: "", customTargeting: [:])])
+        let interceptor = APSRequestInterceptor(ads: [.init(format: .banner, slotUUID: "", customTargeting: [:])])
         
         #expect(await interceptor.getShouldModifyRequest() == false)
         
@@ -38,7 +38,7 @@ struct NimbusAPSOnRequestInterceptorTests {
         ]
     ])
     func interceptorShouldReturnAPSTokenData(_ apsData: [APSAdData]) async throws {
-        let interceptor = NimbusAPSOnRequestInterceptor(ads: apsData)
+        let interceptor = APSRequestInterceptor(ads: apsData)
         
         let info = try await NimbusRequest(from: Nimbus.bannerAd(position: "test", size: .banner).adRequest!.request)
         let deltas = try await interceptor.modifyRequest(request: info)
@@ -61,9 +61,9 @@ struct NimbusAPSOnRequestInterceptorTests {
         ]
     ])
     func apsDataGetsInsertedIntoRequest(_ expectedAPSData: [APSAdData]) async throws {
-        let interceptor = NimbusAPSOnRequestInterceptor(ads: expectedAPSData)
+        let interceptor = APSRequestInterceptor(ads: expectedAPSData)
         
-        var request = try await Nimbus.rewardedAd(position: "position").adRequest!.request
+        var request = await Nimbus.rewardedAd(position: "position").adRequest!.request
         request.interceptors = [interceptor]
         
         try await request.modifyRequestWithExtras(

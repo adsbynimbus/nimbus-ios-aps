@@ -1,5 +1,5 @@
 //
-//  NimbusAPSOnRequestInterceptor.swift
+//  APSRequestInterceptor.swift
 //  NimbusRequestAPSKit
 //
 //  Created on 3/22/23.
@@ -9,7 +9,7 @@
 import DTBiOSSDK
 import NimbusKit
 
-actor NimbusAPSOnRequestInterceptor {
+actor APSRequestInterceptor {
     private var shouldModifyRequest = false
     private var ads: [APSAdData]
     
@@ -32,7 +32,7 @@ actor NimbusAPSOnRequestInterceptor {
 
 // MARK: - NimbusRequest.Interceptor
 
-extension NimbusAPSOnRequestInterceptor: NimbusRequest.Interceptor {
+extension APSRequestInterceptor: NimbusRequest.Interceptor {
     func modifyRequest(request: NimbusRequest) async throws -> [NimbusRequest.Delta] {
         let customTargeting: [[String: String]]
         

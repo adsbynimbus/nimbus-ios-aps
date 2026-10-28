@@ -23,7 +23,7 @@ private struct APS: DemandComponent {
     
     func apply(to adRequest: AdRequest) -> AdRequest {
         var modified = adRequest
-        modified.append(interceptor: NimbusAPSOnRequestInterceptor(ads: ads))
+        modified.append(interceptor: APSRequestInterceptor(ads: ads))
         
         return modified
     }
